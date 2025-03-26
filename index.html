@@ -4,10 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BD Movies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./Styles/app.css">
-    <script defer type="module" src="./src/main.js"></script>
+    <script defer src="./src/API-KEY.js"></script>
+    <script defer src="./src/main.js"></script>
+    <script defer charset="utf-8" src="./src/nodes.js"></script>
+    <script defer src="./src/navigation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
+    <nav>
+        <div class="mobile-menu">
+            <div>
+                <img class="mobile-menu-logo" src="./Styles/Media/—Pngtree—menu icon_4490397(1).png" alt="">
+            </div>
+            <section class="section-mobile-container inactive">
+                <div class="Categories-Nav-mobile">
+                    <ul class="Categories-Nav-text-mobile">
+                        <li>
+                            <input class="Categories-input-mobile" type="radio" name="Categories-input-mobile" id="Categories-inicio-mobile">
+                            <label class="label-for-check" for="Categories-inicio-mobile">Inicio</label>
+                        </li>
+                        <li>
+                            <input class="Categories-input-mobile" type="radio" name="Categories-input-mobile" id="Categories-trending-mobile">
+                            <label class="label-for-check" for="Categories-trending-mobile">Popular</label>
+                        </li>
+                        <li>
+                            <input class="Categories-input-mobile" type="radio" name="Categories-input-mobile" id="categories-cartelera-mobile">
+                            <label class="label-for-check" for="categories-cartelera-mobile">Cartelera</label>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <div class="Search-mobile">
+            <input class="search-mobile-input" type="text" name="" id="">
+            <img class="Search-Logo-mobile" src="./Styles/Media/[CITYPNG.COM]Search Explore White Icon Transparent PNG - 4000x4000.png" alt=""> 
+        </div>
+        <h1>DB Movies</h1>
+        <div class="middle-nav">
+            <div class="Categories-Nav">
+                <ul class="Categories-Nav-text">
+                    <li>
+                        <input class="Categories-input" type="radio" name="Categories-input" id="Categories-inicio">
+                        <label class="label-for-check" for="Categories-inicio">Inicio</label>
+                    </li>
+                    <li>
+                        <input class="Categories-input" type="radio" name="Categories-input" id="Categories-trending">
+                        <label class="label-for-check" for="Categories-trending">Popular</label>
+                    </li>
+                    <li>
+                        <input class="Categories-input" type="radio" name="Categories-input" id="Categories-Cartelera">
+                        <label class="label-for-check" for="Categories-Cartelera">Cartelera</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="Search-container">
+            <div class="Search">
+                <input class="searchInput" type="text">
+                <img class="Search-Logo" src="./Styles/Media/[CITYPNG.COM]Search Explore White Icon Transparent PNG - 4000x4000.png" alt="">
+            </div>
+        </div>
+    </nav>
     
+    <section class="header">
+        <div class="header-information">
+            <h2>Categorias</h2>
+            <button class="view-more-categories">Mostrar</button>
+            
+            </div>
+                <section class="categories-section">
+                    <ul class="categories-list inactive">
+                    </ul>
+                </section>  
+    </section>
+    
+    <section class="MoviePoster-container">
+    
+    </section>
+    <section class='MovieposterList'>
+        <div class="section-navigator inactive">
+            <img class="return-navigation" src="./Styles/Media/arrow-89-512(1).png" alt="">
+            <h3 class="section-information"></h3>
+        </div>
+        <div class="MoviePoster-SetList">
+
+        </div>
+    </section>
 </body>
 </html>
+

@@ -3,7 +3,634 @@
     margin: 0;
 }
 
+:root{
+    --Red-Netflix: #E50914;
+    --Red-Netflix-Hover: #990910;
+    --black: black;
+    --white: white;
+    --black-gray: #131212;
+}
+
+body{
+    background: black;
+    display: flex;
+    flex-direction: column;
+    height: 98vh;
+}
+
 html{
     box-sizing: border-box;
     font-size: 62.5%;
+    height: 99vh;
+}
+
+h1{
+    font-family: "Red Hat Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 900;
+    padding-right: 1rem;
+    place-self: center;
+    color: var(--Red-Netflix);
+    font-size: 2.5rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+
+h2{
+    color: var(--white);
+}
+
+/*Nav*/
+nav{
+    height: 4.5rem;
+    display: grid;
+    grid-template-columns: 26vw 40vw auto;
+    background-color: var(--black);
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.middle-nav{
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+
+/*Catogories*/
+.Categories-Nav{
+    display: flex;
+    place-content: center;
+    height: 87%;
+}
+
+.Categories-Nav ul{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.Categories-Nav-text li{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    
+}
+
+.Categories-input{
+    display: none;
+}
+
+.Categories-input:checked + label {
+    font-weight: bold;
+    border-bottom: var(--Red-Netflix) 0.4rem solid;
+}
+
+.label-for-check{
+    font-size: 1.5rem;
+    color: var(--white);
+    padding: 1rem;
+}
+
+.categories-section{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.categories-list{
+    background-color: var(--black-gray);
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    width: 90vw;
+    padding: 1rem;
+    border: #ff000017 solid 2px;
+    border-radius: 1rem;
+}
+
+.categories-list li{
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+
+/*Search Design*/
+.Search-container{
+    display: flex;
+    place-content: end;
+    align-items: center;
+    padding-right: 2vw;
+}
+
+.li-search{
+    display: flex;
+    margin-left: 3rem;
+}
+
+li{
+    color: var(--white);
+    list-style: none;
+    font-family: "Red Hat Display", serif;
+    place-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+li:hover{
+    cursor: pointer;
+    border-right: var(--Red-Netflix) solid 2px;
+    border-left: var(--Red-Netflix)solid 2px;
+}
+
+.Search{
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.Search input{
+    height: 3rem;
+    width: 100%;
+    background-color: var(--black-gray);
+    border-radius: 2rem;
+    border: none;
+    color: var(--white);
+}
+
+.Search input:focus{
+    border: solid #2d2b2b;
+    outline: none;
+    color: var(--white);
+    padding: 0.2rem 1rem;
+}
+
+.Search-Logo {
+    display: flex;
+    place-self:center;
+    height: 3.5rem;
+    position: absolute;
+    right: 3vw;
+}
+
+
+
+.Search-Logo:hover, .li-search:hover, label:hover{
+    cursor: pointer;
+}
+
+
+p{
+    font-family: "Red Hat Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+/*Menu Mobile*/
+.Search-mobile{
+    display: none;
+}
+
+.mobile-menu{
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+}
+.mobile-menu-logo{
+    display: flex;
+    height: 3.5rem;
+    place-self: center;
+}
+
+
+.section-mobile-container{
+    background-color: gray;
+    display: grid;
+    position: fixed;
+    background: var(--black-gray);
+    flex-direction: row-reverse;
+    top: 5rem;
+    width: 14rem;
+    left: 0px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    height: 15rem;
+    
+}
+.section-mobile-container div{
+   align-items: center;
+    
+}
+
+.Categories-input-mobile:checked + label {
+    font-weight: bold;
+    border-left: var(--Red-Netflix) 0.4rem solid;
+}
+
+.Categories-Nav-text-mobile li{
+    padding: 1.5rem 0;
+   list-style: none;
+}
+
+.Categories-input-mobile{
+    display: none;
+}
+
+/*Header*/
+
+h2{
+    font-family: "Red Hat Display", serif;
+    font-weight: 400;
+    font-size: 1.8rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+.header-information{
+    
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 3rem 4rem 0;
+    margin-top: 2rem;
+}
+
+.header-information button{
+    width: 10rem;
+    background-color: var(--Red-Netflix);
+    color: var(--white);
+    height: 3rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.header-information button:hover{
+    cursor: pointer;
+    background-color: var(--Red-Netflix-Hover);
+}
+
+/*Movie Posters*/
+.section-navigator{
+    display: flex;
+    align-items: center;
+    padding-bottom: 1.5rem;
+}
+
+.section-navigator img{
+    height: 2.5rem;
+    padding:  1rem;
+    background-color: #181717;
+    margin-left: 1rem;
+    border-radius: 4rem;
+}
+
+.section-navigator h3{
+    margin-left: 1rem;
+    color: var(--white);
+    font-size: 2.5rem;
+}
+
+.MoviePoster-container{
+    width: 70vw;
+    padding: 0 5vw;
+    padding-top: 4rem;
+    display: grid;
+    gap: 3rem;
+    place-self: center;
+}
+
+.MoviePoster-container--Long-Display{
+    display: grid;
+    grid-template-columns: 50% 5% 45%;
+    width: 100%;                
+}
+
+.MoviePoster-container--Img{
+    width: 90%;
+    height: 95%;
+    border-radius: 1rem;
+}
+
+.MoviePoster-container--Info{
+    color: var(--white);
+    grid-column: 3;
+}
+
+.close-poster{
+    
+    position: absolute;
+    top: inherit;
+    left: inherit;
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    background-color: rgba(0, 0, 0, 0.699);
+    padding: 1vh;
+    border-radius: 5rem;
+}
+
+.close-poster:hover{
+    cursor: pointer;
+}
+
+
+
+h4{
+    padding-top: 0.4rem;
+    margin-bottom: 2rem;
+    color: var(--white);
+    font-family: "Red Hat Display", serif;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.movie-information-title{
+    font-size: 2.8rem;
+}
+
+.movie-information-description{
+    color: var(--white);
+    font-size: 1.7rem;
+    margin-top: 3rem;
+    text-align: justify;
+}
+
+.categories-and-rate{
+    padding: 1rem 1.5rem;
+    background-color: var(--black-gray);
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+}
+
+.categories-and-rate div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: "Red Hat Display", serif;
+}
+
+.categories-and-rate div div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+.show-votes-average{
+    display: flex;
+    color: var(--white);
+    font-size: 3.5rem;
+    background-color: var(var(--black-gray));
+    border-radius: 6rem;
+    height: 4.3rem;
+    width: 4.5rem;
+    justify-content: center;
+    font-family: "Bebas Neue", sans-serif;
+    align-items: center;
+    font-size: 2.7rem;
+    margin-top: 7%;
+    margin-bottom: 12%;
+    border: var(--Red-Netflix) 0.5rem solid;
+}
+
+.tagline{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--Red-Netflix-Hover);
+}
+
+.titles{
+    font-size: 2.4rem;
+    font-weight: normal;
+}
+
+.movie-categorie-list{
+    margin: 1.5rem;
+    text-align: center;
+}
+
+.li-movie-categorie{
+    margin-bottom: 0.8rem;
+    margin: 0 0.5rem;
+    font-size: 1.4rem;
+}
+
+.li-movie-categorie:hover{
+    padding: 0 0.3rem;
+}
+
+.li-movie-categorie:active{
+    border-right: var(--black) solid 2px;
+    border-left: var(--black)solid 2px;
+    background: var(--Red-Netflix-Hover);
+}
+
+/*Movie Posters - SetList*/
+.MovieposterList{
+    padding-top: 2rem;
+    margin-top: 1rem;
+}
+
+.MoviePoster-SetList{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 0.2fr));
+    /* overflow: auto; */
+    padding: 0 1rem;
+    justify-content: center;
+}
+
+.MoviePoster-SetList--long{
+    margin-top: 2rem;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.MoviePoster-SetList--long div{
+    margin: 0 0.7rem;
+}
+
+.MoviePoster-SetList--long div h4{
+    display: none;
+}
+
+.MoviePoster-SetList--long::-webkit-scrollbar{
+    background-color: rgb(27, 25, 25);
+    color: aliceblue;
+    border-radius: 5rem;
+    width: 5px;
+}
+.MoviePoster-SetList--long::-webkit-scrollbar-thumb{
+    width: 10px;
+    background-color: rgba(116, 50, 50, 0.726);
+    border-radius: 5rem;
+}
+.MoviePoster-SetList--long::-webkit-scrollbar-thumb:hover{
+    background-color: #E50914;
+    scroll-behavior: auto;
+    scrollbar-width: 5px;
+}
+
+.MoviePoster-SetList--long div{
+    display: inline-block;
+    color: white;
+    text-align: center
+}
+
+.MoviePoster-img-Container{
+    display: flex;
+    justify-content: center;
+    place-self: center;
+    margin-bottom: 1rem;
+}
+
+.MoviePoster-img-Container img{
+    height: 20rem;
+    width: auto;
+    border-radius: 1rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.MoviePoster-img-Container img:hover{
+    cursor: pointer;
+}
+
+/*Responsive Design*/
+@media (max-width: 35rem) {
+    nav{
+        height: 4.5rem;
+        display: grid;
+        grid-template-columns: auto 75vw;
+        background-color: var(--black);
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+        align-content: center;
+    }
+
+    h1{
+        display: none !important;
+    }
+    .middle-nav{
+       display: none; 
+    }
+    .mobile-menu{
+        display: flex !important;
+        align-content: center;
+        height: 3.5rem;
+    }
+    .Search-mobile{
+        display: flex;
+        height: 100%;
+        place-content: center;
+        align-content: center;
+        align-items: center;
+        align-content: center;
+        border-radius:3rem;
+        margin-right: 2vw;
+    }
+    .Search-mobile input{
+        height: 92%;
+        width: 100%;
+        background:#131212;
+        border:none;
+        border-radius: 2rem;
+        color: var(--white);
+        padding: 0 1rem;
+    }
+    .search-mobile-input:focus{
+        border: solid #2d2b2b;
+        outline: none;
+    }
+    .Search-Logo-mobile{
+        display: inline-flex;
+        height: 3rem;
+        position: fixed;
+        right: 15px;
+        
+    }
+    .Categories-Nav-mobile{
+        display: flex;
+    }
+    .Categories-Nav{
+        display: none;
+    }
+    .MoviePoster-container{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .MoviePoster-container--Long-Display{
+        background-position: top;    
+    }
+    .MoviePoster-SetList{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+        gap: 1.5rem;
+    }
+    .MoviePoster-img-Container{
+        place-self: center;
+        margin-bottom: 0;
+    }
+    .MoviePoster-img-Container img{
+        margin-top: 1rem;
+        height: 18rem;
+        width: auto;
+    }
+    .li-search{
+        display: none;
+    }
+    .Search{
+        display: none;
+    }
+    }
+
+@media (max-width: 60rem) {
+    .MoviePoster-container--Long-Display-Img{
+        height: 65vh;
+        place-self: center;
+    }
+    .MoviePoster-container{
+        display: flex;
+        width: 90%;
+    }
+    .close-poster{
+        position: absolute;
+        top: inherit;
+        left: inherit;
+        margin-top: 1.2rem;
+        margin-left: 1.2rem;
+    }
+    .MoviePoster-container--Long-Display{
+        display: flex;
+        flex-direction: column;
+    }
+    .MoviePoster-container--Img {
+        height: 100%;
+        width: 100%;
+        place-self: center;
+    }
+    .MoviePoster-container--Info{
+        color: var(--white);
+        width: 80% !important;
+        margin-top: 3rem;
+        place-self: center;
+    }
+}
+
+/*Class Inactive*/
+.inactive{
+    display: none;
 }
