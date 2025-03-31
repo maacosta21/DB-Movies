@@ -6,22 +6,22 @@
 :root{
     --Red-Netflix: #E50914;
     --Red-Netflix-Hover: #990910;
-    --black: black;
-    --white: white;
-    --black-gray: #131212;
+    --Black: black;
+    --White: white;
+    --Black-Gray: #131212;
 }
 
 body{
-    background: black;
+    background: var(--Black);
     display: flex;
     flex-direction: column;
-    height: 98vh;
+    min-height: 100vh;
 }
 
 html{
     box-sizing: border-box;
     font-size: 62.5%;
-    height: 99vh;
+    min-height: 100vh;
 }
 
 h1{
@@ -41,7 +41,7 @@ h1{
 
 
 h2{
-    color: var(--white);
+    color: var(--White);
 }
 
 /*Nav*/
@@ -49,7 +49,7 @@ nav{
     height: 4.5rem;
     display: grid;
     grid-template-columns: 26vw 40vw auto;
-    background-color: var(--black);
+    background-color: var(--Black);
     position: fixed;
     width: 100%;
     z-index: 1;
@@ -85,7 +85,7 @@ nav{
     display: none;
 }
 
-.Categories-input:checked + label {
+.Categories-Nav .Categories-input:checked + label {
     font-weight: bold;
     border-bottom: var(--Red-Netflix) 0.4rem solid;
 }
@@ -103,7 +103,7 @@ nav{
 }
 
 .categories-list{
-    background-color: var(--black-gray);
+    background-color: var(--Black-Gray);
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: space-between;
@@ -132,7 +132,7 @@ nav{
 }
 
 li{
-    color: var(--white);
+    color: var(--White);
     list-style: none;
     font-family: "Red Hat Display", serif;
     place-items: center;
@@ -145,7 +145,7 @@ li{
 li:hover{
     cursor: pointer;
     border-right: var(--Red-Netflix) solid 2px;
-    border-left: var(--Red-Netflix)solid 2px;
+    border-left: var(--Red-Netflix) solid 2px;
 }
 
 .Search{
@@ -158,16 +158,16 @@ li:hover{
 .Search input{
     height: 3rem;
     width: 100%;
-    background-color: var(--black-gray);
+    background-color: var(--Black-Gray);
     border-radius: 2rem;
     border: none;
-    color: var(--white);
+    color: var(--White);
 }
 
 .Search input:focus{
     border: solid #2d2b2b;
     outline: none;
-    color: var(--white);
+    color: var(--White);
     padding: 0.2rem 1rem;
 }
 
@@ -218,7 +218,7 @@ p{
     background-color: gray;
     display: grid;
     position: fixed;
-    background: var(--black-gray);
+    background: var(--Black-Gray);
     flex-direction: row-reverse;
     top: 5rem;
     width: 14rem;
@@ -270,7 +270,7 @@ h2{
 .header-information button{
     width: 10rem;
     background-color: var(--Red-Netflix);
-    color: var(--white);
+    color: var(--White);
     height: 3rem;
     border: none;
     border-radius: 1rem;
@@ -298,7 +298,7 @@ h2{
 
 .section-navigator h3{
     margin-left: 1rem;
-    color: var(--white);
+    color: var(--White);
     font-size: 2.5rem;
 }
 
@@ -324,7 +324,7 @@ h2{
 }
 
 .MoviePoster-container--Info{
-    color: var(--white);
+    color: var(--White);
     grid-column: 3;
 }
 
@@ -349,7 +349,7 @@ h2{
 h4{
     padding-top: 0.4rem;
     margin-bottom: 2rem;
-    color: var(--white);
+    color: var(--White);
     font-family: "Red Hat Display", serif;
     font-size: 1.5rem;
     text-align: center;
@@ -360,7 +360,7 @@ h4{
 }
 
 .movie-information-description{
-    color: var(--white);
+    color: var(--White);
     font-size: 1.7rem;
     margin-top: 3rem;
     text-align: justify;
@@ -368,7 +368,7 @@ h4{
 
 .categories-and-rate{
     padding: 1rem 1.5rem;
-    background-color: var(--black-gray);
+    background-color: var(--Black-Gray);
     margin-top: 2rem;
     border-radius: 0.5rem;
 }
@@ -391,7 +391,7 @@ h4{
     display: flex;
     color: var(--white);
     font-size: 3.5rem;
-    background-color: var(var(--black-gray));
+    background-color: var(--Black-Gray);
     border-radius: 6rem;
     height: 4.3rem;
     width: 4.5rem;
@@ -433,8 +433,8 @@ h4{
 }
 
 .li-movie-categorie:active{
-    border-right: var(--black) solid 2px;
-    border-left: var(--black)solid 2px;
+    border-right: var(--Black) solid 2px;
+    border-left: var(--Black) solid 2px;
     background: var(--Red-Netflix-Hover);
 }
 
@@ -514,7 +514,7 @@ h4{
         height: 4.5rem;
         display: grid;
         grid-template-columns: auto 75vw;
-        background-color: var(--black);
+        background-color: var(--Black);
         position: fixed;
         width: 100%;
         z-index: 1;
@@ -522,7 +522,7 @@ h4{
     }
 
     h1{
-        display: none !important;
+        display: none;
     }
     .middle-nav{
        display: none; 
@@ -548,7 +548,7 @@ h4{
         background:#131212;
         border:none;
         border-radius: 2rem;
-        color: var(--white);
+        color: var(--White);
         padding: 0 1rem;
     }
     .search-mobile-input:focus{
@@ -623,7 +623,7 @@ h4{
         place-self: center;
     }
     .MoviePoster-container--Info{
-        color: var(--white);
+        color: var(--White);
         width: 80% !important;
         margin-top: 3rem;
         place-self: center;
@@ -634,3 +634,58 @@ h4{
 .inactive{
     display: none;
 }
+
+/*Skeleton Loading*/
+.skeleton-poster{
+    background-color: hsl(200, 20%, 80%);
+    animation: skeleton-loading 1s linear infinite alternate;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    place-self: center;
+}
+
+.skeleton-movie-poster{
+    flex-direction: column;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    border-radius: 7rem;
+    width: 100%;
+
+}
+
+.skeleton-image-poster{
+    height: 100%;
+    background-color: gray;
+    width: 100%;
+    width: 60%;
+    justify-content: center;
+    border-radius:2rem;
+    margin-bottom: 1rem;
+}
+
+.skeleton-title-poster{
+    height: 4rem;
+    width: 35%;
+    margin-bottom: 1rem;
+}
+
+.skeleton-details-poster{
+    height: 3rem;
+    width: 70%;
+}
+
+.skeleton-setlist{
+    background-color: hsl(200, 20%, 80%);
+    animation: skeleton-loading 1s linear infinite alternate;
+    width: 120px !important;
+}
+
+@keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 60%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }

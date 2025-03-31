@@ -43,6 +43,11 @@ searchMobileInput.addEventListener('keypress', (event) => {
     }
 })
 
+searchMobileLogo.addEventListener('click', () => {
+        location.hash = `search=user=${searchMobileInput.value}`
+        showSectionName(`Results: ${searchMobileInput.value}`)
+})
+
 returnNavigation.addEventListener('click', ()=>{
     history.back()
     setTimeout(() => {

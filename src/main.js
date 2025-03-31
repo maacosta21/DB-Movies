@@ -1,6 +1,6 @@
 //Document Class
 const startToSearchNav = document.querySelector('.li-search')
-const serchNavBar = document.querySelector('.Search')
+const searchNavBar = document.querySelector('.Search')
 const categoriesNav = document.querySelector('.Categories-Nav')
 const closeIconinSearchBar = document.querySelector('.Search-close')
 const movieDetailsContainer = document.querySelector('.MoviePoster-container')
@@ -12,6 +12,7 @@ const navCategoriesMobile = document.querySelector('.Categories-Nav-text-mobile'
 const postersContainer = document.querySelector('.MovieposterList')
 const searchInput = document.querySelector('.searchInput')
 const searchMobileInput = document.querySelector('.search-mobile-input')
+const searchMobileLogo = document.querySelector('.Search-Logo-mobile')
 const alNavInputs = document.getElementsByName('Categories-input')
 const alNavInputsMobile = document.getElementsByName('Categories-input-mobile')
 const sectionNavigator = document.querySelector('.section-navigator')

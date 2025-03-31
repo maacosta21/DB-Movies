@@ -1,5 +1,21 @@
 //Call API PosterList
 async function getMoviesPreview(link) {
+    clearDOM(movieListContainer)
+
+    //Skeletons
+    for (let index = 0; index < 12; index++) {
+        const skeletonContainer = document.createElement('div')
+        skeletonContainer.classList.add('div-container')
+        const skeletonFigure = document.createElement('figure')
+        skeletonFigure.classList.add('MoviePoster-img-Container')
+        const skeletonIMG = document.createElement('img')
+        skeletonIMG.classList.add('MoviePoster-img', 'skeleton-setlist')
+        movieListContainer.appendChild(skeletonContainer)
+        skeletonContainer.appendChild(skeletonFigure)
+        skeletonFigure.appendChild(skeletonIMG)
+    }
+
+    //API
     const {data} = await api(link.address, {
         params: {
             with_genres: link.id,
@@ -9,8 +25,10 @@ async function getMoviesPreview(link) {
         const movies = data.results
         closePosterList()
         createDOM(movies, link.address, link.id, link.query)
-        window.scrollTo(0,0)  
+        window.scrollTo(0,0)
+
     }
+    
 
 //clear DOM
 function clearDOM(name){
@@ -27,12 +45,12 @@ function createDOM(name){
     clearDOM(movieListContainer)
     name.forEach(movie => {
         if(movie.poster_path != null){
-            const figureCOntainer = document.createElement('figure')
-        figureCOntainer.classList.add('MoviePoster-img-Container', 'poster-toggle')
+        const figureContainer = document.createElement('figure')
+        figureContainer.classList.add('MoviePoster-img-Container', 'poster-toggle')
 
         const imgPoster = document.createElement('img')
         imgPoster.classList.add('MoviePoster-img')
-        imgPoster.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+        imgPoster.src = `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
         imgPoster.alt = movie.title
         imgPoster.id = movie.id
         
@@ -44,19 +62,35 @@ function createDOM(name){
         movieTitle.textContent = movie.title
 
         movieListContainer.appendChild(divMovieInfoContainer)
-        divMovieInfoContainer.appendChild(figureCOntainer)
-        figureCOntainer.appendChild(imgPoster)
+        divMovieInfoContainer.appendChild(figureContainer)
+        figureContainer.appendChild(imgPoster)
         divMovieInfoContainer.appendChild(movieTitle)
+    
         //add Event Listener to each
         imgPoster.addEventListener('click', (event)=>{
-            movieDetailsContainer.innerHTML = ''
-                createProductInfo(event, {
-                    id: movie.id,
-                })
-            setTimeout(() => {
-                openPosterList()
-            }, 10);
             
+        //Skeletons
+        movieDetailsContainer.innerHTML = ''
+        const skeletonMoviePoster = document.createElement('div');
+        skeletonMoviePoster.classList.add('skeleton-movie-poster');
+        const skeletonImagePoster = document.createElement('img');
+        skeletonImagePoster.classList.add('skeleton-image-poster', 'skeleton-poster');
+        skeletonMoviePoster.appendChild(skeletonImagePoster);
+        const skeletonTitlePoster = document.createElement('div');
+        skeletonTitlePoster.classList.add('skeleton-title-poster', 'skeleton-poster');
+        skeletonMoviePoster.appendChild(skeletonTitlePoster);
+        for (let i = 0; i < 3; i++) {
+            const skeletonDetailsPoster = document.createElement('div');
+            skeletonDetailsPoster.classList.add('skeleton-details-poster', 'skeleton-poster');
+            skeletonMoviePoster.appendChild(skeletonDetailsPoster);
+        }
+        movieDetailsContainer.appendChild(skeletonMoviePoster);
+
+        //Create Product Info from API
+            createProductInfo(event, {
+                    id: movie.id,
+            })
+            openPosterList()
         })
         }
 });
@@ -101,14 +135,13 @@ async function loadCategories() {
         inicioButtonMobile.checked = true
 }
 
-
-
 //banner
 async function createProductInfo(event, link) {
-    const {data} = await api(`movie/${link.id}${'?language=es'}`)
-    const movies = data
-    console.log(data)
-    if(event.target.classList.contains('MoviePoster-img')){
+    try {
+        const {data} = await api(`movie/${link.id}${'?language=es'}`)
+        const movies = data
+        console.log(data)
+        if(event.target.classList.contains('MoviePoster-img')){
 
         const divMaincontainer = document.createElement('div')
         divMaincontainer.classList.add('MoviePoster-container--Long-Display')
@@ -139,6 +172,7 @@ async function createProductInfo(event, link) {
         divCategoriesAndRate.classList.add('categories-and-rate')
 
         //DOM Container
+        movieDetailsContainer.innerHTML = ''
         movieDetailsContainer.appendChild(divMaincontainer)
 
         //Poster IMG
@@ -212,6 +246,10 @@ async function createProductInfo(event, link) {
         })
       }
       window.scrollTo(0,0)                          
+    } catch (error) {
+        console.error('Error fetching movie details:', error)
+        alert('Failed to load movie details. Please try again later.')
+    }
 }
 
 //hide
