@@ -83,9 +83,9 @@ viewCategories.addEventListener('click', ()=>{
 
 const navigatorHash = {
     '#home': () => {
-    sectionNavigator.classList.add('inactive')
-      getMoviesPreview({
-        address: 'trending/movie/day?language=es', 
+        sectionNavigator.classList.add('inactive')
+        getMoviesPreview({
+            address: 'trending/movie/day?language=es', 
     });
     
     },
@@ -120,6 +120,8 @@ const navigatorHash = {
 function navigatore() {
     navigatorHash[getnavigationInfo()[0]]()
 }
+
+
 
 window.addEventListener('hashchange', navigatore, false)
 window.addEventListener('DOMContentLoaded', navigatore, false)

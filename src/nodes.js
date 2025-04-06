@@ -1,7 +1,5 @@
 //Call API PosterList
 async function getMoviesPreview(link) {
-    clearDOM(movieListContainer)
-
     //Skeletons
     for (let index = 0; index < 12; index++) {
         const skeletonContainer = document.createElement('div')
@@ -14,35 +12,81 @@ async function getMoviesPreview(link) {
         skeletonContainer.appendChild(skeletonFigure)
         skeletonFigure.appendChild(skeletonIMG)
     }
-
     //API
     const {data} = await api(link.address, {
         params: {
             with_genres: link.id,
             query: link.query,
+            page: link.page,
         }
       })
         const movies = data.results
         closePosterList()
-        createDOM(movies, link.address, link.id, link.query)
-        window.scrollTo(0,0)
 
-    }
-    
+        //CreateDOM and infiniteScrolling
+        pageCounter = 2 
+        createDOM(movies, {lazyLoad: true, clean: true}, link)
+        window.scrollTo(0,0)
+        
+}
+
+//utils
+const lazyLoader = new IntersectionObserver((entries) => {
+    entries.forEach(element => {
+        const imgURL = element.target.getAttribute('loading-URL')
+        if(element.isIntersecting) {
+            element.target.setAttribute('src', imgURL)
+        }
+    });
+})
 
 //clear DOM
 function clearDOM(name){
     name.innerHTML = ''
 }
 
+//Navigation function
 function getnavigationInfo() {
     return [site, userquery, usersearch] = location.hash.split('=')
 }
 
+//Infinite Scrolling Funtion
+function infiniteScrilling(link){
+    const cardObservedForInfiniteScrolling = document.createElement('div')
+    cardObservedForInfiniteScrolling.classList.add('Observe')
+    movieListContainer.appendChild(cardObservedForInfiniteScrolling)
+    setTimeout(() => {
+        const observerInfiniteScrolling = new IntersectionObserver(entries => {
+            entries.forEach(element => {
+                if(element.isIntersecting){
+                    async function apiNewPage(linkdata, newpage) {
+                     const {data} = await api(linkdata.address, {params: {
+                            with_genres: link.id,
+                            query: link.query,
+                            page: newpage,
+                        } })
+                        
+                        console.log(newpage)
+                        createDOM(data.results, {lazyLoad: true, clean: false}, link)
+                        cardObservedForInfiniteScrolling.remove()
+                    }
+                    apiNewPage(link, pageCounter)
+                    cardObservedForInfiniteScrolling.remove()
+                }
+
+         });
+        })
+        observerInfiniteScrolling.observe(cardObservedForInfiniteScrolling)
+        pageCounter++
+
+    }, 1000);
+}
 
 //Create DOM
-function createDOM(name){
-    clearDOM(movieListContainer)
+function createDOM(name, {lazyLoad = false, clean = true}, link) {
+    if(clean){
+        clearDOM(movieListContainer)
+    }
     name.forEach(movie => {
         if(movie.poster_path != null){
         const figureContainer = document.createElement('figure')
@@ -50,10 +94,14 @@ function createDOM(name){
 
         const imgPoster = document.createElement('img')
         imgPoster.classList.add('MoviePoster-img')
-        imgPoster.src = `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+        imgPoster.setAttribute( lazyLoad ? 'loading-URL' : 'src', `https://image.tmdb.org/t/p/w300/${movie.poster_path}`)
+        //Lazy Load
+        if(lazyLoad){
+            console.log(lazyLoad)
+            lazyLoader.observe(imgPoster)
+        }
         imgPoster.alt = movie.title
         imgPoster.id = movie.id
-        
         const divMovieInfoContainer = document.createElement('div')
         divMovieInfoContainer.classList.add('div-container')
         
@@ -85,7 +133,6 @@ function createDOM(name){
             skeletonMoviePoster.appendChild(skeletonDetailsPoster);
         }
         movieDetailsContainer.appendChild(skeletonMoviePoster);
-
         //Create Product Info from API
             createProductInfo(event, {
                     id: movie.id,
@@ -93,9 +140,18 @@ function createDOM(name){
             openPosterList()
         })
         }
+
+        
 });
+
+//Run Infinite Scrolling
+console.log(pageCounter)
+infiniteScrilling(link, pageCounter)
 }
 
+
+
+//toggle Long poster description
 function openPosterList(){
     movieListContainer.classList.add('MoviePoster-SetList--long')
     movieListContainer.classList.remove('MoviePoster-SetList')
@@ -186,7 +242,6 @@ async function createProductInfo(event, link) {
         divMaincontainerInfo.appendChild(descriptionPoster)
 
         //Categories and Rate
-
         if(movies.tagline != ''){
             const divTagline = document.createElement('div')
             const tagline = document.createElement('h3')
@@ -263,4 +318,5 @@ function showCategories() {
     categorisList.classList.remove('inactive')
     viewCategories.textContent = 'Cerrar'
 }
+
 

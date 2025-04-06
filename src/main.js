@@ -18,6 +18,7 @@ const alNavInputsMobile = document.getElementsByName('Categories-input-mobile')
 const sectionNavigator = document.querySelector('.section-navigator')
 const sectionInformation = document.querySelector('.section-information')
 const returnNavigation = document.querySelector('.return-navigation')
+const buttonPage = document.querySelector('#page-counter')
 
 //Document ID
 const inicioButton = document.getElementById('Categories-inicio')
@@ -36,6 +37,8 @@ toggleMobileMenu.addEventListener('click', ()=> {
     mobileMenuContainer.classList.toggle('inactive')
 })
 
+//infinite Scrolling - Current page
+let pageCounter = 2
 
 
 
