@@ -284,9 +284,7 @@ async function createProductInfo(event, link) {
             addToFavorieIMG.setAttribute('src', './Styles/Media/AddedHeart.png')
         })
         addToFavoriteDivContainer.appendChild(addToFavorieIMG)
-
-        const localstorageNewItem = JSON.parse(localStorage.getItem('movies'))
-
+        const localstorageNewItem = JSON.parse(localStorage.getItem('movies')) || {}
         if(localstorageNewItem[movies.id]){
             addToFavorieIMG.setAttribute('src', './Styles/Media/AddedHeart.png')
         }
