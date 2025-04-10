@@ -1,6 +1,18 @@
 //Home start
 loadCategories()
 
+//hide
+function hideCategories() {
+    categorisList.classList.add('inactive')
+    viewCategories.textContent = 'Mostrar'
+}
+
+//show
+function showCategories() {
+    categorisList.classList.remove('inactive')
+    viewCategories.textContent = 'Cerrar'
+}
+
 //Nav Navigation
 navCategories.addEventListener('click', ()=>{
     if(inicioButton.checked == true){

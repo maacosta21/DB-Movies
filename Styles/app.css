@@ -44,6 +44,10 @@ h2{
     color: var(--White);
 }
 
+img{
+    -webkit-user-drag: none;
+}
+
 /*Nav*/
 nav{
     height: 4.5rem;
@@ -281,7 +285,7 @@ h2{
     background-color: var(--Red-Netflix-Hover);
 }
 
-/*Movie Posters*/
+/*Movie Posters Long Details*/
 .section-navigator{
     display: flex;
     align-items: center;
@@ -342,6 +346,20 @@ h2{
 
 .close-poster:hover{
     cursor: pointer;
+}
+
+.add-to-favorite-container{
+    display: flex;
+    justify-content: end;
+    width: 87%;
+    margin-top: -8rem;
+}
+
+.add-to-favorite{
+    height: 5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 5rem;
 }
 
 
@@ -456,7 +474,6 @@ h4{
     margin-top: 2rem;
     overflow: auto;
     white-space: nowrap;
-    height: 222px;
 }
 
 .MoviePoster-SetList--long div{
@@ -596,9 +613,21 @@ h4{
     .Search{
         display: none;
     }
+    .add-to-favorite-container {
+        display: flex;
+        justify-content: end;
+        width: 95%;
+        margin-top: -8rem;
+    }
     }
 
 @media (max-width: 60rem) {
+    .add-to-favorite-container {
+        display: flex;
+        justify-content: end;
+        width: 95%;
+        margin-top: -8rem;
+    }
     .MoviePoster-container--Long-Display-Img{
         height: 65vh;
         place-self: center;

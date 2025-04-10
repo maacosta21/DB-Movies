@@ -66,7 +66,6 @@ function infiniteScrilling(link){
                             page: newpage,
                         } })
                         
-                        console.log(newpage)
                         createDOM(data.results, {lazyLoad: true, clean: false}, link)
                         cardObservedForInfiniteScrolling.remove()
                     }
@@ -97,7 +96,6 @@ function createDOM(name, {lazyLoad = false, clean = true}, link) {
         imgPoster.setAttribute( lazyLoad ? 'loading-URL' : 'src', `https://image.tmdb.org/t/p/w300/${movie.poster_path}`)
         //Lazy Load
         if(lazyLoad){
-            console.log(lazyLoad)
             lazyLoader.observe(imgPoster)
         }
         imgPoster.alt = movie.title
@@ -145,7 +143,6 @@ function createDOM(name, {lazyLoad = false, clean = true}, link) {
 });
 
 //Run Infinite Scrolling
-console.log(pageCounter)
 infiniteScrilling(link, pageCounter)
 }
 
@@ -190,13 +187,37 @@ async function loadCategories() {
         inicioButton.checked = true
         inicioButtonMobile.checked = true
 }
+ //add to favorites function
+ async function setLikedMovies(event, movieID) {
+    const {data} = await api(`movie/${movieID}${'?language=es'}`)
+    const movieData = data
+    if(!localStorage.getItem(`${movieID}`)){
+        movieJson = JSON.stringify(movieData)
+        localStorage.setItem(`movies`, `${movieJson}`)
+        event.target.setAttribute('src', './Styles/Media/AddedHeart.png')
 
-//banner
+        const target = JSON.parse(localStorage.getItem('movies'))
+        targetObjet = target
+        
+        console.log({...data, ...target})
+       
+        
+    }else{
+        localStorage.removeItem(`${movieID}`)
+        event.target.setAttribute('src', './Styles/Media/AddHeart.png')
+    }
+}
+
+/* const target = localStorage.getItem('movies')
+const returnedTarget = Object.assign(target, source);
+
+console.log(target); */
+
+
 async function createProductInfo(event, link) {
     try {
         const {data} = await api(`movie/${link.id}${'?language=es'}`)
         const movies = data
-        console.log(data)
         if(event.target.classList.contains('MoviePoster-img')){
 
         const divMaincontainer = document.createElement('div')
@@ -227,6 +248,24 @@ async function createProductInfo(event, link) {
         const divCategoriesAndRate = document.createElement('div')
         divCategoriesAndRate.classList.add('categories-and-rate')
 
+        //add to favorites
+        const addToFavoriteDivContainer = document.createElement('div')
+        addToFavoriteDivContainer.classList.add('add-to-favorite-container')
+        const addToFavorieIMG = document.createElement('img')
+        addToFavorieIMG.classList.add('add-to-favorite')
+        addToFavorieIMG.setAttribute('src', './Styles/Media/AddHeart.png')
+        addToFavorieIMG.setAttribute('id', `${movies.id}`)
+
+        addToFavorieIMG.addEventListener('click', (event)=>{
+            setLikedMovies(event, movies.id)
+            addToFavorieIMG.setAttribute('src', './Styles/Media/AddedHeart.png')
+        })
+        addToFavoriteDivContainer.appendChild(addToFavorieIMG)
+
+        if(localStorage.getItem(`${movies.id}`)){
+            addToFavorieIMG.setAttribute('src', './Styles/Media/AddedHeart.png')
+        }
+
         //DOM Container
         movieDetailsContainer.innerHTML = ''
         movieDetailsContainer.appendChild(divMaincontainer)
@@ -235,6 +274,7 @@ async function createProductInfo(event, link) {
         divMaincontainer.appendChild(divMaincontainerImg)
         divMaincontainerImg.appendChild(imgClosePoster)
         divMaincontainerImg.appendChild(imgPoster)
+        divMaincontainerImg.appendChild(addToFavoriteDivContainer)
 
         //Poster info
         divMaincontainer.appendChild(divMaincontainerInfo)
@@ -307,16 +347,46 @@ async function createProductInfo(event, link) {
     }
 }
 
-//hide
-function hideCategories() {
-    categorisList.classList.add('inactive')
-    viewCategories.textContent = 'Mostrar'
+async function setLikedMovies(event, movieID) {
+    const { data } = await api(`movie/${movieID}${'?language=es'}`);
+    const movieData = data;
+
+    // Retrieve the existing movies object from localStorage or initialize it
+    let likedMovies = JSON.parse(localStorage.getItem('movies')) || {};
+    console.log(likedMovies); // Debugging: Log the existing likedMovies object
+    if (!likedMovies[movieID]) {
+        // Add the movie to the likedMovies object
+        likedMovies[movieID] = movieData;
+        console.log(likedMovies[movieID]); // Debugging: Log the updated likedMovies object
+        // Save the updated object back to localStorage
+        localStorage.setItem('movies', JSON.stringify(likedMovies));
+
+        // Update the UI to show the movie is liked
+        event.target.setAttribute('src', './Styles/Media/AddedHeart.png');
+    } else {
+        // Remove the movie from the likedMovies object
+        delete likedMovies[movieID];
+
+        // Save the updated object back to localStorage
+        localStorage.setItem('movies', JSON.stringify(likedMovies));
+
+        // Update the UI to show the movie is unliked
+        event.target.setAttribute('src', './Styles/Media/AddHeart.png');
+    }
+
+    console.log(likedMovies); // Debugging: Log the updated likedMovies object
 }
 
-//show
-function showCategories() {
-    categorisList.classList.remove('inactive')
-    viewCategories.textContent = 'Cerrar'
+let emptyObjet = {}
+
+let newObject = {
+    name: 'Miguel',
+    age: 25,
+    city: 'Madrid'
 }
 
+emptyObjet['user'] = newObject
 
+console.log(emptyObjet)
+
+//{ user: { name: 'Miguel', age: 25, city: 'Madrid' }}
