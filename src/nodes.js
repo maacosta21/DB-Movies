@@ -191,22 +191,45 @@ async function loadCategories() {
  async function setLikedMovies(event, movieID) {
     const {data} = await api(`movie/${movieID}${'?language=es'}`)
     const movieData = data
-    if(!localStorage.getItem(`${movieID}`)){
-        movieJson = JSON.stringify(movieData)
-        localStorage.setItem(`movies`, `${movieJson}`)
-        event.target.setAttribute('src', './Styles/Media/AddedHeart.png')
-
-        const target = JSON.parse(localStorage.getItem('movies'))
-        targetObjet = target
-        
-        console.log({...data, ...target})
-       
-        
+    const localstorageNewItem = JSON.parse(localStorage.getItem('movies')) || {}
+    if(!localstorageNewItem[movieID]){
+        localstorageNewItem[movieID] = JSON.stringify(movieData) 
+        localStorage.setItem('movies', JSON.stringify(localstorageNewItem))
+        console.log(localstorageNewItem)
     }else{
-        localStorage.removeItem(`${movieID}`)
+        delete localstorageNewItem[movieID]
+        localStorage.setItem('movies', JSON.stringify(localstorageNewItem))
         event.target.setAttribute('src', './Styles/Media/AddHeart.png')
     }
 }
+
+/* async function setLikedMovies(event, movieID) {
+    const { data } = await api(`movie/${movieID}${'?language=es'}`);
+    const movieData = data;
+
+    // Retrieve the existing movies object from localStorage or initialize it
+    let likedMovies = JSON.parse(localStorage.getItem('movies')) || {};
+    console.log(likedMovies); // Debugging: Log the existing likedMovies object
+    if (!likedMovies[movieID]) {
+        // Add the movie to the likedMovies object
+        likedMovies[movieID] = movieData;
+        console.log(likedMovies[movieID]); // Debugging: Log the updated likedMovies object
+        // Save the updated object back to localStorage
+        localStorage.setItem('movies', JSON.stringify(likedMovies));
+
+        // Update the UI to show the movie is liked
+        event.target.setAttribute('src', './Styles/Media/AddedHeart.png');
+    } else {
+        // Remove the movie from the likedMovies object
+        delete likedMovies[movieID];
+
+        // Save the updated object back to localStorage
+        localStorage.setItem('movies', JSON.stringify(likedMovies));
+
+        // Update the UI to show the movie is unliked
+        event.target.setAttribute('src', './Styles/Media/AddHeart.png');
+    }
+} */
 
 /* const target = localStorage.getItem('movies')
 const returnedTarget = Object.assign(target, source);
@@ -262,7 +285,9 @@ async function createProductInfo(event, link) {
         })
         addToFavoriteDivContainer.appendChild(addToFavorieIMG)
 
-        if(localStorage.getItem(`${movies.id}`)){
+        const localstorageNewItem = JSON.parse(localStorage.getItem('movies'))
+
+        if(localstorageNewItem[movies.id]){
             addToFavorieIMG.setAttribute('src', './Styles/Media/AddedHeart.png')
         }
 
@@ -346,47 +371,3 @@ async function createProductInfo(event, link) {
         alert('Failed to load movie details. Please try again later.')
     }
 }
-
-async function setLikedMovies(event, movieID) {
-    const { data } = await api(`movie/${movieID}${'?language=es'}`);
-    const movieData = data;
-
-    // Retrieve the existing movies object from localStorage or initialize it
-    let likedMovies = JSON.parse(localStorage.getItem('movies')) || {};
-    console.log(likedMovies); // Debugging: Log the existing likedMovies object
-    if (!likedMovies[movieID]) {
-        // Add the movie to the likedMovies object
-        likedMovies[movieID] = movieData;
-        console.log(likedMovies[movieID]); // Debugging: Log the updated likedMovies object
-        // Save the updated object back to localStorage
-        localStorage.setItem('movies', JSON.stringify(likedMovies));
-
-        // Update the UI to show the movie is liked
-        event.target.setAttribute('src', './Styles/Media/AddedHeart.png');
-    } else {
-        // Remove the movie from the likedMovies object
-        delete likedMovies[movieID];
-
-        // Save the updated object back to localStorage
-        localStorage.setItem('movies', JSON.stringify(likedMovies));
-
-        // Update the UI to show the movie is unliked
-        event.target.setAttribute('src', './Styles/Media/AddHeart.png');
-    }
-
-    console.log(likedMovies); // Debugging: Log the updated likedMovies object
-}
-
-let emptyObjet = {}
-
-let newObject = {
-    name: 'Miguel',
-    age: 25,
-    city: 'Madrid'
-}
-
-emptyObjet['user'] = newObject
-
-console.log(emptyObjet)
-
-//{ user: { name: 'Miguel', age: 25, city: 'Madrid' }}
