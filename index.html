@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body>
+<body class="body">
  
     <nav>
         <div class="mobile-menu">
@@ -38,6 +38,10 @@
                             <label class="label-for-check" for="categories-cartelera-mobile">Cartelera</label>
                         </li>
                     </ul>
+                </div>
+                <div class="view-more-categories-mobile">
+                    <p>Categorias</p>
+                    <button class="view-more-categories-mobile-button">▼</button>
                 </div>
             </section>
         </div>
@@ -62,8 +66,10 @@
                         <label class="label-for-check" for="Categories-Cartelera">Cartelera</label>
                     </li>
                 </ul>
+                <button class="view-more-categories">▼</button>
             </div>
         </div>
+
         <div class="Search-container">
             <div class="Search">
                 <input class="searchInput" type="text">
@@ -73,28 +79,28 @@
     </nav>
     
     <section class="header">
-        <div class="header-information">
-            <h2>Categorias</h2>
-            <button class="view-more-categories">Mostrar</button>
-            
-            </div>
-                <section class="categories-section">
-                    <ul class="categories-list inactive">
+                <section class="categories-section inactive">
+                    <ul class="categories-list">
                     </ul>
+                    <div class="close-categories-mobile">
+                        <button class="close-categories-mobile-button">Cerrar</button>
+                    </div>
+                    
                 </section>  
     </section>
-    <section class="MoviePoster-container">
-        
-    </section>
-
-    <section class='MovieposterList'>
-        <div class="section-navigator inactive">
-            <img class="return-navigation" src="./Styles/Media/arrow-89-512(1).png" alt="">
-            <h3 class="section-information"></h3>
-        </div>
-        <div class="MoviePoster-SetList">
-          
-        </div>
-    </section>
+    <div class="main-container">
+        <section class="MoviePoster-container"> 
+        </section>
+        <section class='MovieposterList'>
+            <div class="section-navigator inactive">
+                <img class="return-navigation" src="./Styles/Media/arrow-89-512(1).png" alt="">
+                <h3 class="section-information"></h3>
+            </div>
+            <div class="MoviePoster-SetList">
+              
+            </div>
+        </section>
+    </div>
+    
 </body>
 </html>

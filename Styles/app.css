@@ -24,6 +24,13 @@ html{
     min-height: 100vh;
 }
 
+.header{
+    position: fixed;
+    top: 5rem;
+    place-self: center;
+    max-width: 750px;
+}
+
 h1{
     font-family: "Red Hat Display", serif;
     font-optical-sizing: auto;
@@ -107,19 +114,30 @@ nav{
 }
 
 .categories-list{
-    background-color: var(--Black-Gray);
+    background-color: #000000eb;
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: space-between;
     width: 90vw;
     padding: 1rem;
-    border: #ff000017 solid 2px;
+    border: #ff00001c solid 1px;
     border-radius: 1rem;
+    box-shadow: 10px 5px 10px black;
 }
 
 .categories-list li{
-    font-size: 2rem;
+    font-size: 1.7rem;
     padding: 0.5rem;
+}
+
+.view-more-categories{
+    background-color: var(--Red-Netflix);
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 1rem;
+    place-self: center;
+    margin-left: 1rem;
 }
 
 /*Search Design*/
@@ -229,7 +247,7 @@ p{
     left: 0px;
     padding: 1rem;
     border-radius: 0.5rem;
-    height: 15rem;
+    height: 20rem;
     
 }
 .section-mobile-container div{
@@ -286,6 +304,10 @@ h2{
 }
 
 /*Movie Posters Long Details*/
+.main-container{
+    margin-top: 3rem;
+}
+
 .section-navigator{
     display: flex;
     align-items: center;
@@ -455,6 +477,22 @@ h4{
     border-left: var(--Black) solid 2px;
     background: var(--Red-Netflix-Hover);
 }
+.close-categories-mobile{
+    place-content: center;
+    display: flex;
+    height: 65px;
+    box-shadow: 10px 5px 41px black;
+    background: #0009;
+}
+.close-categories-mobile-button{
+    display: none;
+    height: 40px;
+    width: 120px;
+    place-self: center;
+    background-color: var(--Red-Netflix);
+    border: none;
+    border-radius: 3rem;
+}
 
 /*Movie Posters - SetList*/
 .MovieposterList{
@@ -527,7 +565,7 @@ h4{
 }
 
 /*Responsive Design*/
-@media (max-width: 35rem) {
+@media (max-width: 38rem) {
     nav{
         height: 4.5rem;
         display: grid;
@@ -585,6 +623,29 @@ h4{
     }
     .Categories-Nav{
         display: none;
+    }
+    .categories-section{
+        display: flex;
+        flex-direction: column;
+    }
+    .view-more-categories-mobile{
+        display: flex;
+    }
+    .view-more-categories-mobile p{
+        color: white;
+        padding-right: 1em;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    .view-more-categories-mobile button{
+        background-color: var(--Red-Netflix);
+        border: none;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 1rem;
+    }
+    .close-categories-mobile-button{
+        display: block;
     }
     .MoviePoster-container{
         display: grid;

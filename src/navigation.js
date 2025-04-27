@@ -3,14 +3,22 @@ loadCategories()
 
 //hide
 function hideCategories() {
-    categorisList.classList.add('inactive')
-    viewCategories.textContent = 'Mostrar'
+    catogoriesContainerList.classList.add('inactive')
+    viewCategories.textContent = '▼'
+    viewMoreCategoriesMobile.textContent = '▼'
 }
 
 //show
 function showCategories() {
-    categorisList.classList.remove('inactive')
-    viewCategories.textContent = 'Cerrar'
+    catogoriesContainerList.classList.remove('inactive')
+    viewCategories.textContent = '▲'
+    viewMoreCategoriesMobile.textContent = '▲'
+    document.querySelector('.main-container').addEventListener('click', (e)=>{
+        if(catogoriesContainerList.classList.contains('inactive') == false){
+            catogoriesContainerList != e.target ? catogoriesContainerList.classList.add('inactive') : false
+            viewCategories.textContent = '▼'
+        } 
+    }) 
 }
 
 //Nav Navigation
@@ -78,10 +86,11 @@ function uncheckingHomeNavigation(){
 
 //Categories Section
 const viewCatogeriesButtonStatus = {
-    'Cerrar': ()=>{
-        hideCategories() 
+    '▲': ()=>{
+        hideCategories()
+        
     },
-    'Mostrar': ()=>{
+    '▼': ()=>{
         showCategories()
     }
 }
@@ -91,10 +100,21 @@ viewCategories.addEventListener('click', ()=>{
     viewCatogeriesButtonStatus[viewCategories.textContent]()
 })
 
+viewMoreCategoriesMobile.addEventListener('click', ()=>{ 
+    viewCatogeriesButtonStatus[viewMoreCategoriesMobile.textContent]()
+    mobileMenuContainer.classList.add('inactive')
+})
+
+closeCategoriesListMobile.addEventListener('click', ()=>{
+    hideCategories()
+})
+
 //Navigatiobn URL
 
 const navigatorHash = {
     '#home': () => {
+        inicioButton.checked = true
+        inicioButtonMobile.checked = true
         sectionNavigator.classList.add('inactive')
         getMoviesPreview({
             address: 'trending/movie/day?language=es', 
@@ -102,12 +122,16 @@ const navigatorHash = {
     
     },
     '#popular': ()=> {
+        pupularButton.checked = true
+        trendingButtonMobile.checked = true
         sectionNavigator.classList.add('inactive')
         getMoviesPreview({
             address: 'movie/popular?language=es-US&page=1',
         })
     },
     '#cartelera': ()=> {
+        carteleraButton.checked = true
+        carteleraButtonMobile.checked = true
         sectionNavigator.classList.add('inactive')
         getMoviesPreview({
             address: 'movie/now_playing?language=es-US&page=1',

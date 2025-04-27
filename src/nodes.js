@@ -1,5 +1,7 @@
 //Call API PosterList
 async function getMoviesPreview(link) {
+    //close categories list
+    hideCategories() 
     //Skeletons
     for (let index = 0; index < 12; index++) {
         const skeletonContainer = document.createElement('div')
@@ -202,40 +204,6 @@ async function loadCategories() {
         event.target.setAttribute('src', './Styles/Media/AddHeart.png')
     }
 }
-
-/* async function setLikedMovies(event, movieID) {
-    const { data } = await api(`movie/${movieID}${'?language=es'}`);
-    const movieData = data;
-
-    // Retrieve the existing movies object from localStorage or initialize it
-    let likedMovies = JSON.parse(localStorage.getItem('movies')) || {};
-    console.log(likedMovies); // Debugging: Log the existing likedMovies object
-    if (!likedMovies[movieID]) {
-        // Add the movie to the likedMovies object
-        likedMovies[movieID] = movieData;
-        console.log(likedMovies[movieID]); // Debugging: Log the updated likedMovies object
-        // Save the updated object back to localStorage
-        localStorage.setItem('movies', JSON.stringify(likedMovies));
-
-        // Update the UI to show the movie is liked
-        event.target.setAttribute('src', './Styles/Media/AddedHeart.png');
-    } else {
-        // Remove the movie from the likedMovies object
-        delete likedMovies[movieID];
-
-        // Save the updated object back to localStorage
-        localStorage.setItem('movies', JSON.stringify(likedMovies));
-
-        // Update the UI to show the movie is unliked
-        event.target.setAttribute('src', './Styles/Media/AddHeart.png');
-    }
-} */
-
-/* const target = localStorage.getItem('movies')
-const returnedTarget = Object.assign(target, source);
-
-console.log(target); */
-
 
 async function createProductInfo(event, link) {
     try {
